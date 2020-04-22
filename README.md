@@ -10,8 +10,6 @@ In the project directory, you can run:
 
 #### `npm start`
 
-The app will run on `http://localhost:3000`
-
 To run the tests, use the following command:
 
 #### `npm run test`

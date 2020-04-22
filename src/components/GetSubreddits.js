@@ -31,6 +31,7 @@ class GetSubreddits extends React.Component {
       this.props.subredditData(sortedDataDesc, isSuccessful, currentPage);
     } 
     catch (err) {
+      console.log(err)
       this.setState({ loading: false });
       isSuccessful = false;
       this.props.subredditData([], isSuccessful, currentPage);

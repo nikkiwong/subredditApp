@@ -11,14 +11,14 @@ class App extends React.Component {
     this.state = {
       subredditData: [],
       currentPage: 1,
-      apiSuccessful: true
+      apiSuccessful: null
     };
     this.setSubredditData = this.setSubredditData.bind(this);
     this.paginate = this.paginate.bind(this);
   }
 
   setSubredditData(data, isSuccessful, reset) {
-  //gets data, api return data status as well as the current page number after reset.
+    //gets data, api return data status as well as the current page number after reset.
     this.setState({
       subredditData: data,
       apiSuccessful: isSuccessful,
@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   paginate(pageNumber) {
-  //sets the selected page number
+    //sets the selected page number
     this.setState({
       currentPage: pageNumber
     });
@@ -45,13 +45,17 @@ class App extends React.Component {
       <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
         <GetSubreddits subredditData={this.setSubredditData} />
-        {this.state.apiSuccessful ? (
-          ""
-        ) : (
+        {this.state.apiSuccessful && this.state.subredditData.length===0 ? (
           <p id="noresults">
             No posts were found with this subreddit. Please try another
-            subreddit. :){" "}
+            subreddit. :)
           </p>
+        ) : (this.state.apiSuccessful!=null && this.state.apiSuccessful===false) ? (
+          <p id="invalidSubreddit">
+            Invalid subreddit. Please try another subreddit. :)
+          </p>
+        ) : (
+          ""
         )}
         <div className="container mt-5">
           <ul className="list-group mb-4">

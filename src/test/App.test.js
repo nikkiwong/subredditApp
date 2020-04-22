@@ -34,12 +34,6 @@ describe('App Component', ()=>{
     expect(posts.props().posts).toEqual(currentPosts); 
   });
 
-  test('when the api call is not succesful', () => {
-    if (!wrapper.state("apiSuccessful")){
-      expect(wrapper.find("#noresults").text()).toBe("No posts were found with this subreddit. Please try another subreddit. :) ");
-    }
-  });
-
   test('when a new search is made', () => {
     const event = { preventDefault: () => {}, target: { value: "reactjs" }  };
     wrapper.setState({ currentPage: 3 });
@@ -57,6 +51,19 @@ describe('App Component', ()=>{
     didSubmit.then(()=>{
       wrapper.update();
       expect(wrapper.state("apiSuccessful")).toBe(false);
+      expect(wrapper.find("#invalidSubreddit").text()).toBe("Invalid subreddit. Please try another subreddit. :) ");
+    });
+  });
+
+  test('when api call has been succesful but no results', () => {
+    const event = { preventDefault: () => {}, target: { value: "rear" }  };
+    wrapper.setState({ apiSuccessful: false });
+    const didSubmit = wrapper.find("GetSubreddits").instance().handleSubmit(event)
+    didSubmit.then(()=>{
+      wrapper.update();
+      expect(wrapper.state("apiSuccessful")).toBe(true);
+      expect(wrapper.state("subredditData")).toBe([]);
+      expect(wrapper.find("#noresults").text()).toBe("No posts were found with this subreddit. Please try another subreddit. :) ");
     });
   });
 })
