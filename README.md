@@ -6,12 +6,13 @@
 
 In the project directory, you can run:
 
-### `npm install`
+#### `npm install`
 
-### `npm start`
+#### `npm start`
+
+The app will run on `http://localhost:3000`
 
 To run the tests, use the following command:
 
-### `npm run test`
+#### `npm run test`
 
-The app will run on `http://localhost:3000`
