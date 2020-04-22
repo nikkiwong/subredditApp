@@ -8,10 +8,10 @@ const Posts = ({ posts }) => {
           //date is stored as Epoch time, so convert it here to human readable format
             let createDate = new Date(post.data.created*1000).toLocaleString();
             return (
-            <a href={post.data.url}>
-                <li key={post.data.id} className="list-group-item">
+            <a href={post.data.url} key={post.data.id}>
+                <li  className="list-group-item">
                     {post.data.title}
-                    <span className="dateStyle">{createDate}</span>
+                    <span className="dateStyle">Created on: {createDate}</span>
                 </li>
             </a>
         )})}
