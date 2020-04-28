@@ -68,6 +68,7 @@ class App extends React.Component {
           totalPosts={subredditData.length}
           paginate={this.paginate}
         />
+        <footer>&copy; Nikki Wong 2020</footer>
       </div>
     );
   }
